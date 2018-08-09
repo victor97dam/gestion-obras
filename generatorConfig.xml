@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+
+
+  <!-- classPathEntry location="C:\ABSISCloud\springsource\sts-3.4.0.RELEASE\workspace\bustia\mysql-connector-java-5.1.17-bin.jar" / -->
+  
+  <classPathEntry location="C:\Users\vgonzalez\.m2\repository\mysql\mysql-connector-java\5.1.6"/>
+  <context id="context1">  	  	
+  
+  	<!-- No generamos los comentarios -->  
+    <commentGenerator>  
+      <property name="suppressAllComments" value="true"/>  
+    </commentGenerator>  
+    
+<!--     <jdbcConnection driverClass="com.mysql.jdbc.Driver"  -->
+<!--     				connectionURL="jdbc:mysql://srvbd1bcn:3306/partic" -->
+<!--     				userId="Ipartic1"  -->
+<!--     				password="ipartic1" /> -->
+    				
+      <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+     				connectionURL="jdbc:mysql://localhost:3306/gestodb"
+     				userId="root"
+     				password="" />
+    
+    <!-- DOMAIN -->					
+    <javaModelGenerator 
+    				targetPackage="com.fihoca.gespro2.entities" 
+    				targetProject="gesto" />
+    				
+    				
+    				
+    <!-- MAPPER XML -->				
+    <sqlMapGenerator 
+    				targetPackage="gestodb" 
+    				targetProject="gesto\src\main\resources" /> 
+    				
+    <!-- DAO -->				
+	<javaClientGenerator type="XMLMAPPER" targetPackage="com.fihoca.gespro2.dao"  
+					targetProject="gesto">  
+			<property name="enableSubPackages" value="true" />  
+    </javaClientGenerator>     	
+    			   			   				    			
+
+	
+    <table
+    	schema="gestodb" 
+    	tableName="forma_pago"     				
+    	enableCountByExample="false" 
+    	enableDeleteByExample="false"   
+        enableUpdateByExample="false" 
+        selectByPrimaryKeyQueryId="false"   
+        selectByExampleQueryId="false" 
+        enableSelectByExample="false" 
+        modelType="flat">
+    </table>
+    
+
+	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos    
+    <table 
+    		tableName="%" 
+    		enableCountByExample="false" 
+    		enableDeleteByExample="false"   
+           	enableUpdateByExample="false" 
+           	selectByPrimaryKeyQueryId="false"   
+           	selectByExampleQueryId="false" 
+           	enableSelectByExample="false" 
+           	modelType="conditional">  
+      <property name="useActualColumnNames" value="false"/>  
+    </table>
+    -->   
+  </context>
+</generatorConfiguration>
+
+

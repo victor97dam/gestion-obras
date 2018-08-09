@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.ParametrosMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Parametros">
+    <id column="CONCEPTO" jdbcType="VARCHAR" property="concepto" />
+    <result column="VALOR" jdbcType="VARCHAR" property="valor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CONCEPTO, VALOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from parametros
+    where CONCEPTO = #{concepto,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from parametros
+    where CONCEPTO = #{concepto,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Parametros">
+    insert into parametros (CONCEPTO, VALOR)
+    values (#{concepto,jdbcType=VARCHAR}, #{valor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Parametros">
+    insert into parametros
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="concepto != null">
+        CONCEPTO,
+      </if>
+      <if test="valor != null">
+        VALOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="concepto != null">
+        #{concepto,jdbcType=VARCHAR},
+      </if>
+      <if test="valor != null">
+        #{valor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Parametros">
+    update parametros
+    <set>
+      <if test="valor != null">
+        VALOR = #{valor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONCEPTO = #{concepto,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Parametros">
+    update parametros
+    set VALOR = #{valor,jdbcType=VARCHAR}
+    where CONCEPTO = #{concepto,jdbcType=VARCHAR}
+  </update>
+</mapper>

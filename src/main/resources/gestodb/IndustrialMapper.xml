@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.IndustrialMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Industrial">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NIF" jdbcType="VARCHAR" property="nif" />
+    <result column="NOMBRE" jdbcType="VARCHAR" property="nombre" />
+    <result column="DIRECCION" jdbcType="VARCHAR" property="direccion" />
+    <result column="CODIGO_POSTAL" jdbcType="VARCHAR" property="codigoPostal" />
+    <result column="POBLACION" jdbcType="VARCHAR" property="poblacion" />
+    <result column="PROVINCIA" jdbcType="VARCHAR" property="provincia" />
+    <result column="TELEFONO" jdbcType="VARCHAR" property="telefono" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="RETENCION" jdbcType="DOUBLE" property="retencion" />
+    <result column="IVA" jdbcType="DOUBLE" property="iva" />
+    <result column="ID_FORMA_PAGO" jdbcType="INTEGER" property="idFormaPago" />
+    <result column="ID_LIMITACIONES" jdbcType="INTEGER" property="idLimitaciones" />
+    <association property="formaPago" resultMap="com.fihoca.gespro2.dao.FormaPagoMapper.BaseResultMap" columnPrefix="fp_" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    industrial.ID, NIF, industrial.NOMBRE, DIRECCION, CODIGO_POSTAL, POBLACION, PROVINCIA, TELEFONO, EMAIL, RETENCION, IVA, 
+	ID_FORMA_PAGO, ID_LIMITACIONES
+  </sql>
+  <sql id="select_forma_pago">
+    forma_pago.ID as fp_ID,
+    forma_pago.NOMBRE as fp_NOMBRE
+  </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />,
+    <include refid="select_forma_pago"/>
+    from industrial
+    left outer join forma_pago on forma_pago.ID = industrial.ID_FORMA_PAGO
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />,
+    <include refid="select_forma_pago"/>
+    from industrial
+    left outer join forma_pago on forma_pago.ID = industrial.ID_FORMA_PAGO
+    where industrial.ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from industrial
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Industrial">
+    insert into industrial (ID, NIF, NOMBRE, 
+      DIRECCION, CODIGO_POSTAL, POBLACION, 
+      PROVINCIA, TELEFONO, EMAIL, RETENCION, IVA, 
+      ID_FORMA_PAGO, ID_LIMITACIONES)
+    values (#{id,jdbcType=INTEGER}, #{nif,jdbcType=VARCHAR}, #{nombre,jdbcType=VARCHAR}, 
+      #{direccion,jdbcType=VARCHAR}, #{codigoPostal,jdbcType=VARCHAR}, #{poblacion,jdbcType=VARCHAR}, 
+      #{provincia,jdbcType=VARCHAR}, #{telefono,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{retencion,jdbcType=DOUBLE}, #{iva,jdbcType=DOUBLE}, 
+      #{idFormaPago,jdbcType=INTEGER}, #{idLimitaciones,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Industrial">
+    insert into industrial
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="nif != null">
+        NIF,
+      </if>
+      <if test="nombre != null">
+        NOMBRE,
+      </if>
+      <if test="direccion != null">
+        DIRECCION,
+      </if>
+      <if test="codigoPostal != null">
+        CODIGO_POSTAL,
+      </if>
+      <if test="poblacion != null">
+        POBLACION,
+      </if>
+      <if test="provincia != null">
+        PROVINCIA,
+      </if>
+      <if test="telefono != null">
+        TELEFONO,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="retencion != null">
+        RETENCION,
+      </if>
+       <if test="iva != null">
+        IVA,
+      </if>
+      <if test="idFormaPago != null">
+        ID_FORMA_PAGO,
+      </if>
+      <if test="idLimitaciones != null">
+        ID_LIMITACIONES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nif != null">
+        #{nif,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="direccion != null">
+        #{direccion,jdbcType=VARCHAR},
+      </if>
+      <if test="codigoPostal != null">
+        #{codigoPostal,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null">
+        #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null">
+        #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="telefono != null">
+        #{telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="retencion != null">
+        #{retencion,jdbcType=DOUBLE},
+      </if>
+      <if test="iva != null">
+        #{iva,jdbcType=DOUBLE},
+      </if>
+      <if test="idFormaPago != null">
+        #{idFormaPago,jdbcType=INTEGER},
+      </if>
+      <if test="idLimitaciones != null">
+        #{idLimitaciones,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Industrial">
+    update industrial
+    <set>
+      <if test="nif != null">
+        NIF = #{nif,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        NOMBRE = #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="direccion != null">
+        DIRECCION = #{direccion,jdbcType=VARCHAR},
+      </if>
+      <if test="codigoPostal != null">
+        CODIGO_POSTAL = #{codigoPostal,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null">
+        POBLACION = #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null">
+        PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="telefono != null">
+        TELEFONO = #{telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="retencion != null">
+        RETENCION = #{retencion,jdbcType=DOUBLE},
+      </if>
+      <if test="iva != null">
+        IVA = #{iva,jdbcType=DOUBLE},
+      </if>
+      <if test="idFormaPago != null">
+        ID_FORMA_PAGO = #{idFormaPago,jdbcType=INTEGER},
+      </if>
+      <if test="idLimitaciones != null">
+        ID_LIMITACIONES = #{idLimitaciones,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Industrial">
+    update industrial
+    set NIF = #{nif,jdbcType=VARCHAR},
+      NOMBRE = #{nombre,jdbcType=VARCHAR},
+      DIRECCION = #{direccion,jdbcType=VARCHAR},
+      CODIGO_POSTAL = #{codigoPostal,jdbcType=VARCHAR},
+      POBLACION = #{poblacion,jdbcType=VARCHAR},
+      PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      TELEFONO = #{telefono,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      RETENCION = #{retencion,jdbcType=VARCHAR},
+      IVA = #{iva,jdbcType=VARCHAR},
+      ID_FORMA_PAGO = #{idFormaPago,jdbcType=INTEGER},
+      ID_LIMITACIONES = #{idLimitaciones,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

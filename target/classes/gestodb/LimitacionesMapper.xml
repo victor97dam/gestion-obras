@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.LimitacionesMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Limitaciones">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CONCEPTO" jdbcType="VARCHAR" property="concepto" />
+    <result column="VALOR" jdbcType="DOUBLE" property="valor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CONCEPTO, VALOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from limitaciones
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from limitaciones
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from limitaciones
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Limitaciones">
+    insert into limitaciones (ID, CONCEPTO, VALOR
+      )
+    values (#{id,jdbcType=INTEGER}, #{concepto,jdbcType=VARCHAR}, #{valor,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Limitaciones">
+    insert into limitaciones
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="concepto != null">
+        CONCEPTO,
+      </if>
+      <if test="valor != null">
+        VALOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="concepto != null">
+        #{concepto,jdbcType=VARCHAR},
+      </if>
+      <if test="valor != null">
+        #{valor,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Limitaciones">
+    update limitaciones
+    <set>
+      <if test="concepto != null">
+        CONCEPTO = #{concepto,jdbcType=VARCHAR},
+      </if>
+      <if test="valor != null">
+        VALOR = #{valor,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Limitaciones">
+    update limitaciones
+    set CONCEPTO = #{concepto,jdbcType=VARCHAR},
+      VALOR = #{valor,jdbcType=DOUBLE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

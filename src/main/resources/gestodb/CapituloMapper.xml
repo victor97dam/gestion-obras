@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.CapituloMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Capitulo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CODIGO" jdbcType="VARCHAR" property="codigo" />
+    <result column="NOMBRE" jdbcType="VARCHAR" property="nombre" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODIGO, NOMBRE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from capitulo
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from capitulo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Capitulo">
+    insert into capitulo (ID, CODIGO, NOMBRE
+      )
+    values (#{id,jdbcType=INTEGER}, #{codigo,jdbcType=VARCHAR}, #{nombre,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Capitulo">
+    insert into capitulo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="codigo != null">
+        CODIGO,
+      </if>
+      <if test="nombre != null">
+        NOMBRE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="codigo != null">
+        #{codigo,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Capitulo">
+    update capitulo
+    <set>
+      <if test="codigo != null">
+        CODIGO = #{codigo,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        NOMBRE = #{nombre,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Capitulo">
+    update capitulo
+    set CODIGO = #{codigo,jdbcType=VARCHAR},
+      NOMBRE = #{nombre,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

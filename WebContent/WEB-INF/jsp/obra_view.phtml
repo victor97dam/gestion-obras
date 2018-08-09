@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <?php include 'views/inc/head.phtml'; ?>
+        <title><?= $titulo; ?></title>
+        <script>
+        var promotor_id = <?=$promotor_id?>;
+        </script>
+    </head>
+    <body>
+        <div id='contenedor'>
+            <?php include 'views/inc/cabecera.phtml'; ?>
+            <?php include 'views/inc/menu.phtml'; ?>
+
+            <div class="container-fluid">
+                <div style="margin-top: 15px; margin-bottom: 15px;">
+                    <div class="row">
+
+                        <div class="col-lg-9"></div>
+                        <div class="col-lg-2">
+
+
+                            <a href="obras.php" class="btn btn-info btn-sm  ">
+                                <i class="fas fa-list-ul" ></i> Obras
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <?php if ($action != 'new') { ?>
+                                <a class="btn btn-dark btn-sm " href="obra.php?id=<?= $id ?>&action=delete"><i class="fas fa-trash-alt" ></i> Borrar</a>
+                                <!--                           data-toggle="modal" data-target="#borrarIndustrial"-->
+
+                            <?php } ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <form action="debug.php?action=confirm" method="POST">
+                    <div class="form-group row">
+                        <input type="hidden" name="id" id="id" value="<?= $id ?>">
+                        <label for="nombre" class="col-lg-2 col-form-label">Obra</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Razón social" value="<?= $o[1] ?>" required="required">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="direccion" class="col-lg-2 col-form-label">Dirección</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control"  name="direccion"  id="direccion" placeholder="Dirección" value="<?= $o[2] ?>" required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="cp" class="col-lg-2 col-form-label">Código Postal</label>
+                        <div class="col-lg-2">
+                            <input type="text" class="form-control"  name="cp"  id="cp" placeholder="Código Postal"  value="<?= $o[3] ?>" required="required">
+                        </div>
+                        <label for="Población" class="col-lg-2 offset-lg-2 col-form-label">Población</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control"  name="poblacion"  id="poblacion" placeholder="Población"  value="<?= $o[4] ?>" required="required">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="provincia" class="col-lg-2 col-form-label">Provincia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control"  name="provincia"  id="provincia" placeholder="Provincia"  value="<?= $o[5] ?>" required="required">
+                        </div>
+                        <label for="telefono" class="col-lg-2 col-form-label">Teléfono</label>
+                        <div class="col-lg-4">
+                            <input type="tel" class="form-control"  name="telefono"  id="telefono" placeholder="Teléfono"  value="<?= $o[6] ?>" required="required">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="email" class="col-lg-2 col-form-label">E-mail</label>
+                        <div class="col-lg-4">
+                            <input type="email" class="form-control" name="email"  id="email" placeholder="email"  value="<?= $o[7] ?>" required="required">
+                        </div>
+                        <label for="promotor_nif" class="col-lg-2 col-form-label">Promotor</label>
+                        <div class="col-lg-4">
+                            <input type="hidden" name="promotorid" id="promotorid" value="<?= $promotor_id ?>">
+                            <?php 
+                            if (isset($promotor_id) && $promotor_id >0 ) {
+                                // boton promotor
+                                ?>
+                            <div class="btn btn-light lupa"><strong id="promotor_nif"><?= $promotor_nif; ?></strong>&nbsp;&nbsp;<span id="promotor_nombre"><?= $promotor_nombre; ?></span></div>
+                            <?php
+                            } else {
+                                // boton lupa
+                            ?>
+                             <div  class='lupa btn btn-light text-right'>
+                                 <span id="lupa_btn"><i class='fas fa-search' ></i></span><strong  id="promotor_nif"></strong>&nbsp;&nbsp;<span  id="promotor_nombre"></span></div>
+                             <?php
+                            }  
+                            ?>
+                           
+                            
+
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="estado" class="col-lg-2 col-form-label">Estado</label>
+                        <div class="col-lg-2">
+                            <select class="form-control"  name="estado" id="estado"  value="<?= $o[9] ?>" required="required">
+                                <option value="" selected disabled hidden>Selecciona</option>
+
+                                <option value="A" <?php if ($o[9] == 'A') echo " selected "; ?>>Activa</option>
+                                <option value="C" <?php if ($o[9] == 'C') echo " selected "; ?>>Cerrada</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-success"> <i class="fas fa-save" ></i> Grabar</button>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <a href="<?= @$_SERVER[HTTP_REFERER]; ?>" class="btn btn-dark btn-sm"><i class="fas fa-times-circle" ></i> Cancelar</a>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div><!-- /.container -->
+
+
+
+
+        </div>
+
+        <?php include 'views/inc/pie.phtml'; ?>
+        <!-- Modal -- seleccion de capitulo/subcapitulo -->
+        <div  class="modal fade" id="seleccionaPromotor" role="dialog">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title text-left">Selecciona promotor</h6>                      
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                       
+                               
+
+                             
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <script>
+            $(".lupa").click(function () {
+                var parametros = {
+                    'obraid': '<?= $id; ?>'
+                };
+                $.post("ajax/selecciona_promotor_ajax.php", parametros, function (mensaje) {
+                    $(".modal-body").html(mensaje);
+                });
+
+                $("#seleccionaPromotor").modal();
+
+            });
+        </script>
+
+    </body>
+</html>

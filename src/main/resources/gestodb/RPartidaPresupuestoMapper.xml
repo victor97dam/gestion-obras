@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.RPartidaPresupuestoMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.RPartidaPresupuesto">
+    <result column="ID_PARTIDA" jdbcType="INTEGER" property="idPartida" />
+    <result column="ID_PRESUPUESTO" jdbcType="INTEGER" property="idPresupuesto" />
+    <result column="ID_INDUSTRIAL" jdbcType="INTEGER" property="idIndustrial" />
+    <result column="MEDICION" jdbcType="DOUBLE" property="medicion" />
+    <result column="PRECIO_UNITARIO" jdbcType="DOUBLE" property="precioUnitario" />
+    <result column="PRECIO_TOTAL" jdbcType="DOUBLE" property="precioTotal" />
+    <result column="UNIDADES" jdbcType="VARCHAR" property="unidades" />
+    <result column="MEDICION_INDUSTRIAL" jdbcType="VARCHAR" property="medicionIndustrial" />
+    <result column="COMENTATIOS" jdbcType="VARCHAR" property="comentatios" />
+    <result column="IVA" jdbcType="INTEGER" property="iva" />
+    <result column="RETENCION" jdbcType="INTEGER" property="retencion" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.RPartidaPresupuesto">
+    insert into r_partida_presupuesto (ID_PARTIDA, ID_PRESUPUESTO, ID_INDUSTRIAL, 
+      MEDICION, PRECIO_UNITARIO, PRECIO_TOTAL, 
+      UNIDADES, MEDICION_INDUSTRIAL, COMENTATIOS, 
+      IVA, RETENCION)
+    values (#{idPartida,jdbcType=INTEGER}, #{idPresupuesto,jdbcType=INTEGER}, #{idIndustrial,jdbcType=INTEGER}, 
+      #{medicion,jdbcType=DOUBLE}, #{precioUnitario,jdbcType=DOUBLE}, #{precioTotal,jdbcType=DOUBLE}, 
+      #{unidades,jdbcType=VARCHAR}, #{medicionIndustrial,jdbcType=VARCHAR}, #{comentatios,jdbcType=VARCHAR}, 
+      #{iva,jdbcType=INTEGER}, #{retencion,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.RPartidaPresupuesto">
+    insert into r_partida_presupuesto
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idPartida != null">
+        ID_PARTIDA,
+      </if>
+      <if test="idPresupuesto != null">
+        ID_PRESUPUESTO,
+      </if>
+      <if test="idIndustrial != null">
+        ID_INDUSTRIAL,
+      </if>
+      <if test="medicion != null">
+        MEDICION,
+      </if>
+      <if test="precioUnitario != null">
+        PRECIO_UNITARIO,
+      </if>
+      <if test="precioTotal != null">
+        PRECIO_TOTAL,
+      </if>
+      <if test="unidades != null">
+        UNIDADES,
+      </if>
+      <if test="medicionIndustrial != null">
+        MEDICION_INDUSTRIAL,
+      </if>
+      <if test="comentatios != null">
+        COMENTATIOS,
+      </if>
+      <if test="iva != null">
+        IVA,
+      </if>
+      <if test="retencion != null">
+        RETENCION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idPartida != null">
+        #{idPartida,jdbcType=INTEGER},
+      </if>
+      <if test="idPresupuesto != null">
+        #{idPresupuesto,jdbcType=INTEGER},
+      </if>
+      <if test="idIndustrial != null">
+        #{idIndustrial,jdbcType=INTEGER},
+      </if>
+      <if test="medicion != null">
+        #{medicion,jdbcType=DOUBLE},
+      </if>
+      <if test="precioUnitario != null">
+        #{precioUnitario,jdbcType=DOUBLE},
+      </if>
+      <if test="precioTotal != null">
+        #{precioTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="unidades != null">
+        #{unidades,jdbcType=VARCHAR},
+      </if>
+      <if test="medicionIndustrial != null">
+        #{medicionIndustrial,jdbcType=VARCHAR},
+      </if>
+      <if test="comentatios != null">
+        #{comentatios,jdbcType=VARCHAR},
+      </if>
+      <if test="iva != null">
+        #{iva,jdbcType=INTEGER},
+      </if>
+      <if test="retencion != null">
+        #{retencion,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

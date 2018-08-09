@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.UsuarioMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Usuario">
+    <id column="LOGIN" jdbcType="VARCHAR" property="login" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="NOMBRE" jdbcType="VARCHAR" property="nombre" />
+    <result column="APELLIDOS" jdbcType="VARCHAR" property="apellidos" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOGIN, PASSWORD, NOMBRE, APELLIDOS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from usuario
+    where LOGIN = #{login,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from usuario
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from usuario
+    where LOGIN = #{login,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Usuario">
+    insert into usuario (LOGIN, PASSWORD, NOMBRE, 
+      APELLIDOS)
+    values (#{login,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nombre,jdbcType=VARCHAR}, 
+      #{apellidos,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Usuario">
+    insert into usuario
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="login != null">
+        LOGIN,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="nombre != null">
+        NOMBRE,
+      </if>
+      <if test="apellidos != null">
+        APELLIDOS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="login != null">
+        #{login,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="apellidos != null">
+        #{apellidos,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Usuario">
+    update usuario
+    <set>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        NOMBRE = #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="apellidos != null">
+        APELLIDOS = #{apellidos,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOGIN = #{login,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Usuario">
+    update usuario
+    set PASSWORD = #{password,jdbcType=VARCHAR},
+      NOMBRE = #{nombre,jdbcType=VARCHAR},
+      APELLIDOS = #{apellidos,jdbcType=VARCHAR}
+    where LOGIN = #{login,jdbcType=VARCHAR}
+  </update>
+</mapper>

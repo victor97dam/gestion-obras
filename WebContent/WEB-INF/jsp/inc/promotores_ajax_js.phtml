@@ -1,0 +1,14 @@
+<script>
+    $(document).ready(function () {
+         $('#find_promotor').DataTable({
+             "order": [[2, 'asc']],
+         });
+          $('.btn-selecciona').click(function () {
+              var nif = $(this).data('nif');
+              var nombre = $(this).data('nombre');
+            $('#promotor_nif').html(nif);
+            $('#promotor_nombre').html(nombre);
+            $('#seleccionaPromotor').modal('toggle');
+         });
+    });
+</script>

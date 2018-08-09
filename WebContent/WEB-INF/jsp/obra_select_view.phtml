@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <?php include 'views/inc/head.phtml'; ?>
+        <title><?= $titulo; ?></title>
+    </head>
+    <body>
+        <div id='contenedor'>
+            <?php include 'views/inc/cabecera.phtml'; ?>
+            <?php include 'views/inc/menu.phtml'; ?>
+
+            <div class="container-fluid">
+                <div style="margin-top: 15px; margin-bottom: 15px;">
+                    <div class="row">
+
+                        <div class="col-lg-9"></div>
+                        <div class="col-lg-3 text-right">
+
+                            <a href="<?= @$_SERVER[HTTP_REFERER]; ?>" class="btn btn-info btn-sm"><i class="fas fa-arrow-left" ></i> Volver</a>
+ 
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <div class="form-group row">
+                    <span class="col-lg-2 btn btn-light text-left" disabled='disabled'>Obra</span>
+                    <div class="col-lg-10">
+                        <?= $o[1] ?>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <span class="col-lg-2  btn btn-light text-left" disabled='disabled'>Dirección</span>
+                    <div class="col-lg-10">
+                        <?= $o[2] ?>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <span class="col-lg-2 btn btn-light text-left" disabled='disabled'>Código Postal</span>
+                    <div class="col-lg-2">
+                        <?= $o[3] ?>
+                    </div>
+                    <span class="col-lg-2 offset-lg-2 btn btn-light text-left" disabled='disabled'>Población</span>
+                    <div class="col-lg-4">
+                        <?= $o[4] ?>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <span  class="col-lg-2 btn btn-light text-left" disabled='disabled'>Provincia</span>
+                    <div class="col-lg-4">
+                        <?= $o[5] ?>
+                    </div>
+                    <span  class="col-lg-2 btn btn-light text-left" disabled='disabled'>Teléfono</span>
+                    <div class="col-lg-4">
+                        <?= $o[6] ?>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <span  class="col-lg-2 btn btn-light text-left" disabled='disabled'>E-mail</span>
+                    <div class="col-lg-4">
+                        <?= $o[7] ?>
+                    </div>
+                    <span  class="col-lg-2 btn btn-light text-left" disabled='disabled'>NIF</span>
+                    <div class="col-lg-4">
+                        <?= $o[10] ?>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <span  class="col-lg-2 btn btn-light text-left" disabled='disabled'>Estado</span>
+                    <div class="col-lg-4">
+                        <?= $o[9] ?>
+                    </div>
+
+
+                </div>
+
+
+
+            </div><!-- /.container -->
+
+
+
+
+        </div>
+
+        <?php include 'views/inc/pie.phtml'; ?>
+
+    </body>
+</html>

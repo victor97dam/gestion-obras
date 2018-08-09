@@ -1,0 +1,127 @@
+
+#footer {
+background-color: #216e82;
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  height: 40px;
+ padding: 5px;  
+ color: #ffffff;
+}
+#header {
+    padding: 5px;  
+    background-color: #333333;
+    color: #ffffff;
+}
+.btn-group {
+    padding-right: 10px;
+}
+span.user {
+    margin: 10px; 
+    padding: 10px;
+}
+
+table#tabla-maestros tr td,
+table#tabla-presupuestos tr td {
+   padding:0.25em;
+}
+table#window-industriales tr td,
+table#find_promotor tr td {
+   padding:0.25em;
+}
+
+.btn-light, .btn-light:disabled {
+    background: #efefef; 
+}
+obra_title {
+    width: 96% !important;
+    text-align:center;
+}
+option_title {
+    width: 96% !important;
+    text-align:center;
+    font-size: 2em !important;
+    background-color: #b1dfbb;
+}
+.dropdown-menu {
+    z-index: 99999;
+}
+td .form-group{
+    margin-bottom: 0 !important;
+}
+.hide {
+    visibility: hidden;
+    display: none;
+}
+.bd-sidebar .bd-toc-link.btn-info {
+    color:#ffffff;
+}
+.bd-sidebar .bd-toc-link.btn-info:hover {
+    background-color: #17a2b8;
+}
+h4 span.info {
+    color: #17a2b8 !important;
+}
+/* presupuesto styles ---------------- */
+.td-partida {
+    text-align:left;
+    width: 110px !important; 
+    max-width: 110px;
+    min-width: 110px;
+}
+.td-unidades {
+    text-align:center;
+    width: 40px !important; 
+    max-width: 40px;
+    min-width: 40px;
+}
+.td-medicion {
+    text-align:center;
+    width: 60px !important; 
+    max-width: 60px;
+    min-width: 60px;
+}
+.td-preciounidad {
+    text-align:center;
+    width: 150px !important;    
+}
+.td-preciounidad .form-group input {
+    text-align:right;
+    width:150px;
+}
+.td-controles {
+    text-align:center;
+    width: 90px !important; 
+    max-width: 90px;
+    min-width: 90px;
+}
+.bd-search .form-control {
+    width: 70%;
+}
+/* -------------fin presupuesto styles ----- */
+.btn-collapse {
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: 400;
+    margin-right: 10px;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+/* Sticky footer styles
+-------------------------------------------------- */
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #ffffff;
+   text-align: center;
+   padding: 0;
+   border-top: 5px solid #333333; /* #FFC107; */
+}
+.footer .row {
+    background-color: #ffffff;
+  
+}

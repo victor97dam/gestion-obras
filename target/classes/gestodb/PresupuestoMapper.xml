@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.PresupuestoMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Presupuesto">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CONTRATO" jdbcType="VARCHAR" property="contrato" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CONTRATO, ESTADO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from presupuesto
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from presupuesto
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Presupuesto">
+    insert into presupuesto (ID, CONTRATO, ESTADO
+      )
+    values (#{id,jdbcType=INTEGER}, #{contrato,jdbcType=VARCHAR}, #{estado,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Presupuesto">
+    insert into presupuesto
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="contrato != null">
+        CONTRATO,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="contrato != null">
+        #{contrato,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Presupuesto">
+    update presupuesto
+    <set>
+      <if test="contrato != null">
+        CONTRATO = #{contrato,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Presupuesto">
+    update presupuesto
+    set CONTRATO = #{contrato,jdbcType=VARCHAR},
+      ESTADO = #{estado,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

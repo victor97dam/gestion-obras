@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fihoca.gespro2.dao.PromotorMapper">
+  <resultMap id="BaseResultMap" type="com.fihoca.gespro2.entities.Promotor">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NIF" jdbcType="VARCHAR" property="nif" />
+    <result column="NOMBRE" jdbcType="VARCHAR" property="nombre" />
+    <result column="DIRECCION" jdbcType="VARCHAR" property="direccion" />
+    <result column="CP" jdbcType="VARCHAR" property="cp" />
+    <result column="POBLACION" jdbcType="VARCHAR" property="poblacion" />
+    <result column="PROVINCIA" jdbcType="VARCHAR" property="provincia" />
+    <result column="TELEFONO" jdbcType="VARCHAR" property="telefono" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NIF, NOMBRE, DIRECCION, CP, POBLACION, PROVINCIA, TELEFONO, EMAIL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from promotor
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from promotor
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from promotor
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fihoca.gespro2.entities.Promotor">
+    insert into promotor (ID, NIF, NOMBRE, 
+      DIRECCION, CP, POBLACION, 
+      PROVINCIA, TELEFONO, EMAIL
+      )
+    values (#{id,jdbcType=INTEGER}, #{nif,jdbcType=VARCHAR}, #{nombre,jdbcType=VARCHAR}, 
+      #{direccion,jdbcType=VARCHAR}, #{cp,jdbcType=VARCHAR}, #{poblacion,jdbcType=VARCHAR}, 
+      #{provincia,jdbcType=VARCHAR}, #{telefono,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fihoca.gespro2.entities.Promotor">
+    insert into promotor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="nif != null">
+        NIF,
+      </if>
+      <if test="nombre != null">
+        NOMBRE,
+      </if>
+      <if test="direccion != null">
+        DIRECCION,
+      </if>
+      <if test="cp != null">
+        CP,
+      </if>
+      <if test="poblacion != null">
+        POBLACION,
+      </if>
+      <if test="provincia != null">
+        PROVINCIA,
+      </if>
+      <if test="telefono != null">
+        TELEFONO,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nif != null">
+        #{nif,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="direccion != null">
+        #{direccion,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null">
+        #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null">
+        #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null">
+        #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="telefono != null">
+        #{telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fihoca.gespro2.entities.Promotor">
+    update promotor
+    <set>
+      <if test="nif != null">
+        NIF = #{nif,jdbcType=VARCHAR},
+      </if>
+      <if test="nombre != null">
+        NOMBRE = #{nombre,jdbcType=VARCHAR},
+      </if>
+      <if test="direccion != null">
+        DIRECCION = #{direccion,jdbcType=VARCHAR},
+      </if>
+      <if test="cp != null">
+        CP = #{cp,jdbcType=VARCHAR},
+      </if>
+      <if test="poblacion != null">
+        POBLACION = #{poblacion,jdbcType=VARCHAR},
+      </if>
+      <if test="provincia != null">
+        PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      </if>
+      <if test="telefono != null">
+        TELEFONO = #{telefono,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fihoca.gespro2.entities.Promotor">
+    update promotor
+    set NIF = #{nif,jdbcType=VARCHAR},
+      NOMBRE = #{nombre,jdbcType=VARCHAR},
+      DIRECCION = #{direccion,jdbcType=VARCHAR},
+      CP = #{cp,jdbcType=VARCHAR},
+      POBLACION = #{poblacion,jdbcType=VARCHAR},
+      PROVINCIA = #{provincia,jdbcType=VARCHAR},
+      TELEFONO = #{telefono,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
